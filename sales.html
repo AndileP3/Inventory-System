@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            height: 100vh;
+            
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            padding-top:20px ;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar h2 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            margin: 10px;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            display: block;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .sidebar .profile{
+            background-color: #0056b3;
+            color: green;
+        }
+        .sidebar a:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            margin: 20px 20px 20px 20px; /* Adjusted margin to accommodate fixed sidebar */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+/*            height: calc(100vh - 40px);*/
+        }
+        h2 {
+            text-align: center;
+        }
+        .dashboard{
+            background-color: #007bff ;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+            border: solid;
+            border-color: blue;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+           
+         
+        }
+
+        th, td {    
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        #totalRevenue{
+            color: lightgreen;
+        }
+        #totalRestock{
+            color: pink;
+        }
+        #saleDate{
+            color: gray;
+            font-weight: bold;
+            font-family: sans-serif;
+            text-shadow: none;
+        }
+        .logout:hover{
+            color: red;
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div>
+        <h2>HELLO WO</h2>
+        <a href="profile.html">Dashboard</a>
+        <a href="index.html">Inventory</a>
+        <a class="active" href="sales.html">Sales</a>
+        <a href="Sign-In.html" class="logout">Log Out</a>
+        </div>
+        <div class="copyright">&copy; 2025 Management. All Rights Reserved.</div>
+    </div>
+
+    <div class="container">
+        <h2>Sales Dashboard</h2>
+        <div class="dashboard">
+            <p>Total Revenue: R<span id="totalRevenue">0</span></p>
+        </div>
+        <canvas id="salesChart"></canvas>
+    </div>
+
+    <script>
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+        let totalRevenue = products.reduce((sum, product) => sum + (product.productPrice * product.productQuantity), 0);
+        document.getElementById("totalRevenue").textContent = totalRevenue.toFixed(2);
+
+        new Chart(document.getElementById("salesChart"), {
+            type: "line",
+            data: {
+                labels: products.map(p => p.saleDate),
+                datasets: [{
+                    label: "Total Sales Revenue",
+                    data: products.map(p => p.productPrice * p.productQuantity),
+                    borderColor: "blue",
+                    fill: false
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

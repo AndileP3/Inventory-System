@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <script type="module" src="index.js" defer></script>
+    <script>
+        function redirectToLogin(event) {
+            event.preventDefault(); // Prevent actual form submission
+            alert("Sign up successful! Redirecting to login page."); // Simulate sign-up success
+            window.location.href = "index.html"; // Redirect to login page
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .signup-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            border-color: #1e3c72;
+            outline: none;
+        }
+
+        .signup-btn, .signin-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .signup-btn {
+            background: #1e3c72;
+            color: #ffffff;
+        }
+
+        .signup-btn:hover {
+            background: #2a5298;
+        }
+
+        .signin-btn {
+            background: #ffffff;
+            color: #1e3c72;
+            border: 1px solid #1e3c72;
+        }
+
+        .signin-btn:hover {
+            background: #1e3c72;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form onsubmit="redirectToLogin(event)">
+            <div class="input-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="new-username">Username</label>
+                <input type="text" id="new-username" placeholder="Choose a username" required>
+            </div>
+            <div class="input-group">
+                <label for="new-password">Password</label>
+                <input type="password" id="new-password" placeholder="Create a password" required>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <a href="Sign-In.html"><button class="signin-btn">Sign In</button></a>
+
+        
+    </div>
+</body>
+</html>
